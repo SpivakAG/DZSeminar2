@@ -4,23 +4,38 @@
 int number = new Random().Next(1,10);
 Console.WriteLine(number);
 
-int userNumber = Input(number);
+int n1 = 0; //нужен для работы метода, формально, без введения аргумента почему то не работает
 
-while (userNumber != number)
+int userNumber = Input(number);
+int wrongAnswers = 0;
+
+if (userNumber == number)
 {
+    Console.WriteLine("Вы угадали!!!");
+}
+else
+{
+while (wrongAnswers <2)
+{
+    {
     if (userNumber > number)
     {
         Console.WriteLine("Загаданое число меньше вашего :'(");
-        userNumber = Input(number);
+        userNumber = Input(n1);
+        wrongAnswers +=1;
     }
     else 
     {
         Console.WriteLine("Загаданое число больше вашего :'(");
-        userNumber = Input(number);
+        userNumber = Input(n1);
+        wrongAnswers +=1;
+    }
     }
 }
-    Console.WriteLine("Вы угадали!!!");
+Console.WriteLine("Вы проиграли:'(");
+}
     
+
 
 int Input (int n1)
 {
