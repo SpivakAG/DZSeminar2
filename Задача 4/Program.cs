@@ -4,40 +4,36 @@
 int number = new Random().Next(1,10);
 Console.WriteLine(number);
 
-int n1 = 0; //нужен для работы метода, формально, без введения аргумента почему то не работает
+int wrongAnswers = 0; 
 
 int userNumber = Input(number);
-int wrongAnswers = 0;
 
-if (userNumber == number)
+while (userNumber != number)  
 {
-    Console.WriteLine("Вы угадали!!!");
-}
-else
-{
-while (wrongAnswers <2)
-{
+    if (wrongAnswers <2)  //проверяет кол-во неверных ответов
     {
-    if (userNumber > number)
-    {
-        Console.WriteLine("Загаданое число меньше вашего :'(");
-        userNumber = Input(n1);
-        wrongAnswers +=1;
+        if (userNumber > number)
+        {
+            Console.WriteLine("Загаданое число меньше вашего :'(");
+            wrongAnswers +=1;
+            userNumber = Input(number);
+        }
+        else 
+        {
+            Console.WriteLine("Загаданое число больше вашего :'(");
+            wrongAnswers +=1;
+            userNumber = Input(number);
+        }
     }
-    else 
-    {
-        Console.WriteLine("Загаданое число больше вашего :'(");
-        userNumber = Input(n1);
-        wrongAnswers +=1;
-    }
-    }
+    else break;  // в случае если попыток нет, цикл прекращается
+   
+
 }
-Console.WriteLine("Вы проиграли:'(");
-}
+if (userNumber == number)  Console.WriteLine("Вы угадали!!!");
+else Console.WriteLine("Вы проиграли");
     
 
-
-int Input (int n1)
+int Input (int n1) // функция ввода данных пользователем
 {
 Console.WriteLine("Введите число от 1 до 10:");
 int InputUserNumber = Convert.ToInt32(Console.ReadLine());
